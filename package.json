@@ -1,0 +1,35 @@
+{
+  "name": "vite-lit-ts-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/my-element.es.js",
+  "exports": {
+    ".": "./dist/my-element.es.js"
+  },
+  "types": "types/my-element.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "babeljsx": "babel --watch src/components/react-jsx --out-dir src/components/react-js --presets react-app/prod"
+  },
+  "dependencies": {
+    "@rollup/plugin-babel": "^6.0.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "lit": "^2.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.21.0",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0-beta.1"
+  }
+}
