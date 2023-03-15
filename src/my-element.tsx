@@ -3,8 +3,22 @@ import { customElement, property } from 'lit/decorators.js';
 // import Button from './components/react-js/ButtonJsx.js';
 import { ReactRendererJsx } from './components/ReactRendererJsx.js';
 import Button from './components/Button.jsx';
+import { createRoot } from 'react-dom/client';
 
 customElements.define('react-renderer-jsx', ReactRendererJsx);
+
+function getReactWithRoot(){
+  const root = document.createElement('div');
+  const reactRoot = createRoot(root);
+
+  return function react(component) {
+    reactRoot.render(component);
+
+    return root
+  }
+}
+
+const react = getReactWithRoot()
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -22,6 +36,8 @@ export class MyElement extends LitElement {
       event.stopPropagation();
       this.eventDetail = event.detail;
     }}></react-renderer-jsx>
+
+    ${react(<Button message={this.message} />)}
     
     <button @click=${() =>
       (this.message = 'How are you?')}>Change message</button>
