@@ -5,20 +5,20 @@ import { ReactRendererJsx } from './components/ReactRendererJsx.js';
 import Button from './components/Button.jsx';
 import { createRoot } from 'react-dom/client';
 
-customElements.define('react-renderer-jsx', ReactRendererJsx);
+customElements.define('react-renderer', ReactRendererJsx);
 
-function getReactWithRoot(){
+function getReactWithRoot() {
   const root = document.createElement('div');
   const reactRoot = createRoot(root);
 
   return function react(component) {
     reactRoot.render(component);
 
-    return root
-  }
+    return root;
+  };
 }
 
-const react = getReactWithRoot()
+const react = getReactWithRoot();
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -30,12 +30,12 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      <react-renderer-jsx .element=${(
+      <react-renderer .element=${(
         <Button message={this.message} />
       )} @custom-click=${(event) => {
       event.stopPropagation();
       this.eventDetail = event.detail;
-    }}></react-renderer-jsx>
+    }}></react-renderer>
 
     ${react(<Button message={this.message} />)}
     
